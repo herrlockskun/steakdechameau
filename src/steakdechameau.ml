@@ -46,8 +46,6 @@ module Runtime = struct
   end
 end
 
-
-
 module Input = struct
   let check_player () =
     let player = Runtime.Entity.get Player in
@@ -66,6 +64,40 @@ module Input = struct
   
 end
 
+module Physics = struct
+  let on_add_contact
+      ~(sender : Orx.Object.t)
+      ~(recipient : Orx.Object.t) =
+    let sender_name = Orx.Object.get_name sender in
+    let recipient_name = Orx.Object.get_name recipient in
+
+    if String.equal sender_name "ChamoObject" then (
+      Orx.Object.set_life_time sender 0.0;
+(*      Orx.Object.set_active sender false;*)
+      print_string "sender == chameau";
+     (* State.increase_score state 1000*)
+    );  
+    if String.equal recipient_name "ChamoObject" then (
+      Orx.Object.set_life_time recipient 0.0;
+    (*  Orx.Object.set_active recipient false;*)
+      print_string "recipient == chameau";
+     (* State.increase_score state 1000*)
+    );
+    
+    Ok()
+let event_handler
+      (event : Orx.Event.t)
+      (physics : Orx.Physics_event.t)
+      (_payload : Orx.Physics_event.payload) =
+    match physics with
+    | Contact_add ->
+      let sender = Orx.Event.get_sender_object event |> Option.get in
+      let recipient = Orx.Event.get_recipient_object event |> Option.get in
+      on_add_contact ~sender ~recipient
+    | Contact_remove -> Ok ()
+end
+
+
 let init () =
   let _viewport = Orx.Viewport.create_from_config_exn "Viewport" in
   (*let _chamo = Orx.Object.create_from_config_exn "ChamoObject" in*)
@@ -75,6 +107,9 @@ let init () =
   Orx.Sound.play music;
   let chamo_spawner = Orx.Object.create_from_config_exn "ChamoSpawner" in
   Runtime.Spawner.set chamo_spawner;
+
+  Orx.Event.add_handler Physics Physics.event_handler;
+
   Ok ()
 
 let run () =
