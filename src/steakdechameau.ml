@@ -56,7 +56,9 @@ module Input = struct
     let left_speed = Orx.Vector.mulf right_speed ~-.1.0 in
     let down_speed = Orx.Vector.make ~x:0.0 ~y:player_speed ~z:0.0 in
     let up_speed = Orx.Vector.mulf down_speed ~-.1.0 in
+    let no_speed = Orx.Vector.mulf down_speed ~-.0.0 in
 
+    Orx.Object.set_speed player no_speed;
     if Orx.Input.is_active "Left" then Orx.Object.set_speed player left_speed;
     if Orx.Input.is_active "Right" then Orx.Object.set_speed player right_speed;
     if Orx.Input.is_active "Up" then Orx.Object.set_speed player up_speed;
