@@ -70,6 +70,9 @@ let init () =
   let _viewport = Orx.Viewport.create_from_config_exn "Viewport" in
   (*let _chamo = Orx.Object.create_from_config_exn "ChamoObject" in*)
   let _player = Orx.Object.create_from_config_exn "PlayerObject" in
+  Orx.Object.add_sound_exn _player "Music";
+  let music = Orx.Object.get_last_added_sound _player |> Option.get in
+  Orx.Sound.play music;
   let chamo_spawner = Orx.Object.create_from_config_exn "ChamoSpawner" in
   Runtime.Spawner.set chamo_spawner;
   Ok ()
