@@ -273,4 +273,4 @@ let run () =
 
 let () =
   (* Start the main game engine loop *)
-  Orx.Main.start ~config_dir:"." ~init ~run "steakdechameau"
+  Orx.Main.start ~config_dir:"data/config" ~init ~run "steakdechameau"
