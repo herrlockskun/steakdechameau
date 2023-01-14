@@ -1,4 +1,7 @@
 _build/
-**/*.swp
-**/*.log
-**/*.exe
+*/**/*.swp
+*/**/*.log
+*/**/*.exe
+*.exe
+*.log
+*.swp
