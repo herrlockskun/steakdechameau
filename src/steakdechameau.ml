@@ -50,14 +50,17 @@ end
 
 module Input = struct
   let check_player () =
-    let _ = Orx.Log.log "%d" (3) in
-    let player = Runtime.Entity.get Player in (* ça bug mais je sais pas pourquoi... si ça marche gauche et droite devraient bouger le perso*)
-    let _ = Orx.Log.log "%d" (4) in
+    let player = Runtime.Entity.get Player in
     let player_speed = Runtime.Entity.get_speed Player in
     let right_speed = Orx.Vector.make ~x:player_speed ~y:0.0 ~z:0.0 in
     let left_speed = Orx.Vector.mulf right_speed ~-.1.0 in
+    let down_speed = Orx.Vector.make ~x:0.0 ~y:player_speed ~z:0.0 in
+    let up_speed = Orx.Vector.mulf down_speed ~-.1.0 in
+
     if Orx.Input.is_active "Left" then Orx.Object.set_speed player left_speed;
     if Orx.Input.is_active "Right" then Orx.Object.set_speed player right_speed;
+    if Orx.Input.is_active "Up" then Orx.Object.set_speed player up_speed;
+    if Orx.Input.is_active "Down" then Orx.Object.set_speed player down_speed;
   
 end
 
@@ -73,7 +76,7 @@ let run () =
   if Orx.Input.is_active "Quit" then
     Orx.Status.error
   else (
-    (*let _ = Input.check_player () in*) (*a décommenter quand ça marche, cf plus haut*)
+    let _ = Input.check_player () in (*a décommenter quand ça marche, cf plus haut*)
     Orx.Status.ok;
   )
 
