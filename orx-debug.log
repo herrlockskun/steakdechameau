@@ -1,2 +1,9 @@
 [10:39:48] [CONFIG] [orxConfig.c:orxConfig_Load(4613)] [steakdechameau.ini]: Can't load file: invalid / file not found
 [10:40:20] [CONFIG] [orxConfig.c:orxConfig_Load(4613)] [steakdechameau.ini]: Can't load file: invalid / file not found
+[10:43:24] [CONFIG] [orxConfig.c:orxConfig_Load(4613)] [steakdechameau.ini]: Can't load file: invalid / file not found
+[11:07:23] [CONFIG] [orxConfig.c:orxConfig_ProcessBuffer(2859)] [steakdechameau.ini]: Begin include @mini64.ini@
+[11:07:23] [CONFIG] [orxConfig.c:orxConfig_Load(4613)] [mini64.ini]: Can't load file: invalid / file not found
+[11:07:23] [CONFIG] [orxConfig.c:orxConfig_ProcessBuffer(2865)] [steakdechameau.ini]: End include @mini64.ini@
+[11:10:40] [CONFIG] [orxConfig.c:orxConfig_ProcessBuffer(2859)] [steakdechameau.ini]: Begin include @mini64.ini@
+[11:10:40] [CONFIG] [orxConfig.c:orxConfig_Load(4613)] [mini64.ini]: Can't load file: invalid / file not found
+[11:10:40] [CONFIG] [orxConfig.c:orxConfig_ProcessBuffer(2865)] [steakdechameau.ini]: End include @mini64.ini@
