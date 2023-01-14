@@ -46,6 +46,22 @@ module Runtime = struct
   end
 end
 
+module State = struct
+  type t = { 
+    mutable score : int;
+    music : Orx.Sound.t;
+    _player : Orx.Object.t;
+     chamo_spawner: Orx.Object.t;
+    _viewport : Orx.Viewport.t;
+  }
+
+  let state : t option ref = ref None
+
+  let get () = Option.get !state
+
+  (* Increase the score by a given amount *)
+end
+
 module Input = struct
   let check_player () =
     let player = Runtime.Entity.get Player in
@@ -66,6 +82,7 @@ end
 
 module Physics = struct
   let on_add_contact
+        (state : State.t)
       ~(sender : Orx.Object.t)
       ~(recipient : Orx.Object.t) =
     let sender_name = Orx.Object.get_name sender in
@@ -89,11 +106,12 @@ let event_handler
       (event : Orx.Event.t)
       (physics : Orx.Physics_event.t)
       (_payload : Orx.Physics_event.payload) =
+        let state = State.get() in
     match physics with
     | Contact_add ->
       let sender = Orx.Event.get_sender_object event |> Option.get in
       let recipient = Orx.Event.get_recipient_object event |> Option.get in
-      on_add_contact ~sender ~recipient
+      on_add_contact state ~sender ~recipient
     | Contact_remove -> Ok ()
 end
 
@@ -108,11 +126,14 @@ let init () =
   let chamo_spawner = Orx.Object.create_from_config_exn "ChamoSpawner" in
   Runtime.Spawner.set chamo_spawner;
 
+        State.state := 
+                Some {_viewport; _player; music; chamo_spawner; score=0};
   Orx.Event.add_handler Physics Physics.event_handler;
 
   Ok ()
 
 let run () =
+        let state = State.get() in 
   if Orx.Input.is_active "Quit" then
     Orx.Status.error
   else (
