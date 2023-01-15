@@ -83,9 +83,8 @@ let event_handler
   ( match physics with
   | Contact_remove -> ()
   | Contact_add ->
-    let sender = Orx.Event.get_sender_object event |> Option.get in
-    Orx.Object.set_life_time sender 0.0; |> ignore;
-    Orx.Log.log "aaa";
+    let recipient = Orx.Event.get_recipient_object event |> Option.get in
+    Orx.Object.set_life_time recipient 0.0; |> ignore;
   );
 
   Ok ()
@@ -100,7 +99,7 @@ let init () =
   Orx.Sound.play music;
   let chamo_spawner = Orx.Object.create_from_config_exn "ChamoSpawner" in
   Runtime.Spawner.set chamo_spawner;
-  (*Orx.Event.add_handler Physics event_handler;*)
+  Orx.Event.add_handler Physics event_handler;
 
   Ok ()
 
