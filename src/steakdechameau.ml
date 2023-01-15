@@ -161,7 +161,19 @@ Runtime.Score.inc ();
 Input.next_scene ();)
 
 let panneau1 () = 
-        (let (_ : Orx.Object.t) = Orx.Object.create_from_config_exn "EndText" in 
+        (let (_ : Orx.Object.t) = Orx.Object.create_from_config_exn "Panneau1" in 
+        Runtime.Score.inc ();)
+
+let panneau2 () = 
+        (let (_ : Orx.Object.t) = Orx.Object.create_from_config_exn "Panneau2" in 
+        Runtime.Score.inc ();)
+
+let panneau3 () = 
+        (let (_ : Orx.Object.t) = Orx.Object.create_from_config_exn "Panneau3" in 
+        Runtime.Score.inc ();)
+
+let panneau4 () = 
+        (let (_ : Orx.Object.t) = Orx.Object.create_from_config_exn "Panneau4" in 
         Runtime.Score.inc ();)
 
 
@@ -181,8 +193,14 @@ let run () =
             panneau1 ()
   else if _score == 5 then 
             level2 ()
+  else if _score == 6 then 
+            panneau2 ()
         else if _score == 10 then 
-                level3 (););
+                level3 ()
+  else if _score == 11 then 
+            panneau3 ()
+  else if _score == 15 then 
+          panneau4 ());
 
     Orx.Status.ok
   )
