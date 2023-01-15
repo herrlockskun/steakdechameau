@@ -64,6 +64,13 @@ module Runtime = struct
 end
 
 module Input = struct
+  let next_scene () = 
+    let player = Runtime.Entity.get Player in
+    let position = Orx.Object.get_world_position player in
+    let increment = Orx.Vector.make ~x:0.0 ~y:0.0 ~z:10.0 in
+    let new_position = Orx.Vector.add position increment in
+    Orx.Object.set_position player new_position
+
   let check_player () =
     let player = Runtime.Entity.get Player in
     let player_speed = Runtime.Entity.get_speed Player in
@@ -139,12 +146,14 @@ let init () =
 let level2 () =
   (let _viewport2 = Orx.Viewport.create_from_config_exn "Viewport2" in
 let _baril_spawner = Orx.Object.create_from_config_exn "BarilSpawner" in
-Runtime.Score.inc ();)
+Runtime.Score.inc ();
+Input.next_scene ();)
 
 let level3 () =
   (let _viewport3 = Orx.Viewport.create_from_config_exn "Viewport3" in
 let _table_spawner = Orx.Object.create_from_config_exn "TableSpawner" in
-Runtime.Score.inc ();)
+Runtime.Score.inc ();
+Input.next_scene ();)
 
 
 let run () =
