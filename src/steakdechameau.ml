@@ -45,6 +45,12 @@ module Runtime = struct
       | Player -> Orx.Config.(get get_float) ~section:"Player" ~key:"Speed"
   end
 
+ module Game_over = struct
+    let key = "GameOver"
+    let set () = Orx.Config.(set set_bool) ~section ~key:"GameOver" true
+    let is_game_over () = Orx.Config.(get get_bool) ~section ~key:"GameOver"
+  end
+
   module Score = struct
     let key = "Score"
     let get () = Orx.Config.(get get_int) ~section ~key
@@ -121,9 +127,17 @@ let run () =
   if Orx.Input.is_active "Quit" then
     Orx.Status.error
   else (
-    let _ = Input.check_player () in (*a décommenter quand ça marche, cf plus haut*)
-    Orx.Status.ok;
+          Input.check_player (); (*a décommenter quand ça marche, cf plus haut*)
+           let game_over = Runtime.Game_over.is_game_over () in
+    let no_more_blocks = Runtime.Spawner.no_more_blocks () in
+    let _score = Runtime.Score.get () in
+    ( if (not game_over) && no_more_blocks || (_score>=5) then
+      let (_ : Orx.Object.t) = Orx.Object.create_from_config_exn "EndText" in
+      Runtime.Game_over.set ()
+    );
+    Orx.Status.ok
   )
+
 
 let () =
   (* Start the main game engine loop *)
