@@ -155,6 +155,10 @@ let _table_spawner = Orx.Object.create_from_config_exn "TableSpawner" in
 Runtime.Score.inc ();
 Input.next_scene ();)
 
+let panneau1 () = 
+        (let (_ : Orx.Object.t) = Orx.Object.create_from_config_exn "EndText" in 
+        Runtime.Score.inc ();)
+
 
 let run () =
   if Orx.Input.is_active "Quit" then
@@ -168,7 +172,9 @@ let run () =
       let (_ : Orx.Object.t) = Orx.Object.create_from_config_exn "EndText" in
       Runtime.Game_over.set ()
     );*)
-    (if _score == 5 then 
+    (if _score == 0 then 
+            panneau1 ()
+  else if _score == 5 then 
             level2 ()
         else if _score == 10 then 
                 level3 (););
