@@ -110,16 +110,28 @@ let event_handler
   
 
 let init () =
-  let _viewport = Orx.Viewport.create_from_config_exn "Viewport" in
+  let _viewport = Orx.Viewport.create_from_config_exn "Viewport1" in
   (*let _chamo = Orx.Object.create_from_config_exn "ChamoObject" in*)
   let _score = Orx.Object.create_from_config_exn "ScoreObject" in
   let _player = Orx.Object.create_from_config_exn "PlayerObject" in
+
   Orx.Object.add_sound_exn _player "Music";
   let music = Orx.Object.get_last_added_sound _player |> Option.get in
   Orx.Sound.play music;
+
   let chamo_spawner = Orx.Object.create_from_config_exn "ChamoSpawner" in
+  let _baril_spawner = Orx.Object.create_from_config_exn "BarilSpawner" in
+  let _table_spawner = Orx.Object.create_from_config_exn "TableSpawner" in
+
   let _prairieBackground = Orx.Object.create_from_config_exn "BackgroundChamo" in
+  let _barilBackground = Orx.Object.create_from_config_exn "BackgroundBaril" in
+  let _restoBackground = Orx.Object.create_from_config_exn "BackgroundResto" in
+  
   Runtime.Spawner.set chamo_spawner;
+
+
+
+
   Orx.Event.add_handler Physics event_handler;
   
 
@@ -133,14 +145,16 @@ let run () =
   if Orx.Input.is_active "Quit" then
     Orx.Status.error
   else (
-          Input.check_player (); (*a décommenter quand ça marche, cf plus haut*)
-           let game_over = Runtime.Game_over.is_game_over () in
-    let no_more_blocks = Runtime.Spawner.no_more_blocks () in
+    Input.check_player (); (*a décommenter quand ça marche, cf plus haut*)
+    let _game_over = Runtime.Game_over.is_game_over () in
+    let _no_more_blocks = Runtime.Spawner.no_more_blocks () in
     let _score = Runtime.Score.get () in
-    ( if (not game_over) && no_more_blocks || (_score>=5) then
+    (*( if (not game_over) && no_more_blocks || (_score>=5) then
       let (_ : Orx.Object.t) = Orx.Object.create_from_config_exn "EndText" in
       Runtime.Game_over.set ()
-    );
+    );*)
+    (if _score > 1 then level2 (););
+
     Orx.Status.ok
   )
 
