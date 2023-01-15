@@ -110,6 +110,7 @@ let init () =
   let music = Orx.Object.get_last_added_sound _player |> Option.get in
   Orx.Sound.play music;
   let chamo_spawner = Orx.Object.create_from_config_exn "ChamoSpawner" in
+  let _prairieBackground = Orx.Object.create_from_config_exn "BackgroundChamo" in
   Runtime.Spawner.set chamo_spawner;
   Orx.Event.add_handler Physics event_handler;
   
