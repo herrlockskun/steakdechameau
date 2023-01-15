@@ -191,15 +191,15 @@ let run () =
     );*)
     (if _score == 0 then 
             panneau1 ()
-  else if _score == 5 then 
+  else if _score == 7 then 
             level2 ()
-  else if _score == 6 then 
+  else if _score == 8 then 
             panneau2 ()
-        else if _score == 10 then 
+        else if _score == 14 then 
                 level3 ()
-  else if _score == 11 then 
-            panneau3 ()
   else if _score == 15 then 
+            panneau3 ()
+  else if _score == 22 then 
           panneau4 ());
 
     Orx.Status.ok
