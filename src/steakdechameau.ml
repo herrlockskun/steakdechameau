@@ -150,6 +150,7 @@ let init () =
 let level2 () =
   (let _viewport2 = Orx.Viewport.create_from_config_exn "Viewport2" in
 let _baril_spawner = Orx.Object.create_from_config_exn "BarilSpawner" in
+let _bandit_spawner = Orx.Object.create_from_config_exn "BanditSpawner" in
 Runtime.Score.inc ();
 Input.next_scene ();)
 
