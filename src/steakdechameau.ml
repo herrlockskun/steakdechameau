@@ -53,6 +53,7 @@ module Runtime = struct
   
     let inc () = set (get () + 1)
     let dec () = set (get () - 1)
+    let reset()= set (0)
   end
 end
 
@@ -86,6 +87,7 @@ module Input = struct
   
 end
 
+
 let event_handler
     (event : Orx.Event.t)
     (physics : Orx.Physics_event.t)
@@ -117,15 +119,19 @@ let init () =
 
   Ok ()
 
+let level2 () =
+  (let _viewport2 = Orx.Viewport.create_from_config_exn "Viewport2" in
+  let _chamo = Orx.Object.create_from_config_exn "ChamoObject" in Runtime.Score.reset ();)
+
 let run () =
   if Orx.Input.is_active "Quit" then
     Orx.Status.error
   else (
     let _ = Input.check_player () in (*a décommenter quand ça marche, cf plus haut*)
-    Orx.Status.ok;
+    if (Runtime.Score.get () > 2) then level2 ();
+    Orx.Status.ok
   )
 
 let () =
   (* Start the main game engine loop *)
   Orx.Main.start ~config_dir:"data/config" ~init ~run "steakdechameau"
-  
