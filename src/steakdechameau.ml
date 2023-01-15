@@ -120,15 +120,14 @@ let init () =
   Orx.Sound.play music;
 
   let chamo_spawner = Orx.Object.create_from_config_exn "ChamoSpawner" in
-  let _baril_spawner = Orx.Object.create_from_config_exn "BarilSpawner" in
-  let _table_spawner = Orx.Object.create_from_config_exn "TableSpawner" in
+(*  let _baril_spawner = Orx.Object.create_from_config_exn "BarilSpawner" in*)
+(*  let _table_spawner = Orx.Object.create_from_config_exn "TableSpawner" in*)
 
   let _prairieBackground = Orx.Object.create_from_config_exn "BackgroundChamo" in
   let _barilBackground = Orx.Object.create_from_config_exn "BackgroundBaril" in
   let _restoBackground = Orx.Object.create_from_config_exn "BackgroundResto" in
   
   Runtime.Spawner.set chamo_spawner;
-
 
 
 
@@ -139,7 +138,14 @@ let init () =
 
 let level2 () =
   (let _viewport2 = Orx.Viewport.create_from_config_exn "Viewport2" in
-  let _chamo = Orx.Object.create_from_config_exn "ChamoObject" in Runtime.Score.reset ();)
+let _baril_spawner = Orx.Object.create_from_config_exn "BarilSpawner" in
+Runtime.Score.inc ();)
+
+let level3 () =
+  (let _viewport3 = Orx.Viewport.create_from_config_exn "Viewport3" in
+let _table_spawner = Orx.Object.create_from_config_exn "TableSpawner" in
+Runtime.Score.inc ();)
+
 
 let run () =
   if Orx.Input.is_active "Quit" then
@@ -153,7 +159,7 @@ let run () =
       let (_ : Orx.Object.t) = Orx.Object.create_from_config_exn "EndText" in
       Runtime.Game_over.set ()
     );*)
-    (if _score > 1 then level2 (););
+    (if _score == 1 then level2 (););
 
     Orx.Status.ok
   )
