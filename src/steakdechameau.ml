@@ -168,7 +168,7 @@ let run () =
       let (_ : Orx.Object.t) = Orx.Object.create_from_config_exn "EndText" in
       Runtime.Game_over.set ()
     );*)
-    (if _score == 1 then level2 (););
+    (if _score == 5 then level2 (););
 
     Orx.Status.ok
   )
