@@ -44,6 +44,16 @@ module Runtime = struct
       | Chamo -> Orx.Config.(get get_float) ~section:"Chamo" ~key:"Speed"
       | Player -> Orx.Config.(get get_float) ~section:"Player" ~key:"Speed"
   end
+
+  module Score = struct
+    let key = "Score"
+    let get () = Orx.Config.(get get_int) ~section ~key
+  
+    let set score = Orx.Config.(set set_int) ~section ~key score
+  
+    let inc () = set (get () + 1)
+    let dec () = set (get () - 1)
+  end
 end
 
 module Input = struct
@@ -85,6 +95,7 @@ let event_handler
   | Contact_add ->
     let recipient = Orx.Event.get_recipient_object event |> Option.get in
     Orx.Object.set_life_time recipient 0.0; |> ignore;
+    Runtime.Score.inc ();
   );
 
   Ok ()
@@ -93,6 +104,7 @@ let event_handler
 let init () =
   let _viewport = Orx.Viewport.create_from_config_exn "Viewport" in
   (*let _chamo = Orx.Object.create_from_config_exn "ChamoObject" in*)
+  let _score = Orx.Object.create_from_config_exn "ScoreObject" in
   let _player = Orx.Object.create_from_config_exn "PlayerObject" in
   Orx.Object.add_sound_exn _player "Music";
   let music = Orx.Object.get_last_added_sound _player |> Option.get in
@@ -100,6 +112,7 @@ let init () =
   let chamo_spawner = Orx.Object.create_from_config_exn "ChamoSpawner" in
   Runtime.Spawner.set chamo_spawner;
   Orx.Event.add_handler Physics event_handler;
+  
 
   Ok ()
 
