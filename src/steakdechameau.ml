@@ -58,7 +58,7 @@ module Runtime = struct
     let set score = Orx.Config.(set set_int) ~section ~key score
   
     let inc () = set (get () + 1)
-    let dec () = set (get () - 1)
+    let dec () = set (get () - 2)
     let reset()= set (0)
   end
 end
@@ -108,9 +108,13 @@ let event_handler
   ( match physics with
   | Contact_remove -> ()
   | Contact_add ->
-    let recipient = Orx.Event.get_recipient_object event |> Option.get in
-    Orx.Object.set_life_time recipient 0.0; |> ignore;
-    Runtime.Score.inc ();
+      let recipient = Orx.Event.get_recipient_object event |> Option.get in
+      let recipient_name = Orx.Object.get_name recipient in
+      let _is_bandit = String.equal recipient_name "BanditObject" in
+      if (_is_bandit) then 
+        Runtime.Score.dec ();
+      Runtime.Score.inc ();
+      Orx.Object.set_life_time recipient 0.0; |> ignore;
   );
 
   Ok ()
@@ -146,6 +150,7 @@ let init () =
 let level2 () =
   (let _viewport2 = Orx.Viewport.create_from_config_exn "Viewport2" in
 let _baril_spawner = Orx.Object.create_from_config_exn "BarilSpawner" in
+let _bandit_spawner = Orx.Object.create_from_config_exn "BanditSpawner" in
 Runtime.Score.inc ();
 Input.next_scene ();)
 
