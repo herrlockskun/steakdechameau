@@ -77,6 +77,18 @@ module Input = struct
     if Orx.Input.is_active "Right" then Orx.Object.set_speed player right_speed;
     if Orx.Input.is_active "Up" then Orx.Object.set_speed player up_speed;
     if Orx.Input.is_active "Down" then Orx.Object.set_speed player down_speed;
+    if Orx.Input.is_active "Left" && Orx.Input.is_active "Up"
+      then Orx.Object.set_speed player (Orx.Vector.mulf (Orx.Vector.add left_speed up_speed) 0.7);
+    if Orx.Input.is_active "Up" && Orx.Input.is_active "Right"
+      then Orx.Object.set_speed player (Orx.Vector.mulf (Orx.Vector.add up_speed right_speed) 0.7);
+    if Orx.Input.is_active "Right" && Orx.Input.is_active "Down"
+      then Orx.Object.set_speed player (Orx.Vector.mulf (Orx.Vector.add right_speed down_speed) 0.7);
+    if Orx.Input.is_active "Down" && Orx.Input.is_active "Left"
+      then Orx.Object.set_speed player (Orx.Vector.mulf (Orx.Vector.add down_speed left_speed) 0.7);
+    if Orx.Input.is_active "Right" && Orx.Input.is_active "Left"
+      then Orx.Object.set_speed player no_speed;
+    if Orx.Input.is_active "Down" && Orx.Input.is_active "Up"
+      then Orx.Object.set_speed player no_speed;
   
 end
 
@@ -133,7 +145,7 @@ let init () =
   Ok ()
 
 let run () =
-        let state = State.get() in 
+        (* let state = State.get() in  *)
   if Orx.Input.is_active "Quit" then
     Orx.Status.error
   else (
