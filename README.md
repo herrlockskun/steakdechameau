@@ -68,10 +68,10 @@ Continuer le developpement :
 
 ## Credits
 
-Musique : [Marius Chandèze](github.com/machandeze)
-Graphisme : [Guillaume Garros](github.com/RedGuigui)
-Scénario : [Axel Pronnier](github.com/Axpronnier) et [Valentin Meunier](github.com/herrlockskun)
-Developpement : [Axel Pronnier](github.com/Axpronnier), [Valentin Meunier](github.com/herrlockskun), [Guillaume Garros](github.com/RedGuigui) et [Marius Chandèze](github.com/machandeze)
+Musique : [Marius Chandèze](https://github.com/machandeze)
+Graphisme : [Guillaume Garros](https://github.com/RedGuigui)
+Scénario : [Axel Pronnier](https://github.com/Axpronnier) et [Valentin Meunier](https://github.com/herrlockskun)
+Developpement : [Axel Pronnier](https://github.com/Axpronnier), [Valentin Meunier](https://github.com/herrlockskun), [Guillaume Garros](https://github.com/RedGuigui) et [Marius Chandèze](https://github.com/machandeze)
 
 
 
