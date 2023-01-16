@@ -1,3 +1,31 @@
+# Etat du jeu 
+
+## Synopsis
+
+Knil un jeune entrepreneur ambitieux et malin souhaite ouvrir un resto de steak de chamo dans le futur. Cependant les chamo ont disparu de son époque et du futur, il doit donc voyager dans le pc pour chasser du chamo. Suivez la à travers son aventure exceptionel à travers le temps.
+
+## Système de jeu
+
+C'est un jeu d'aventure ou l'on se déplace sur différents tableaux
+
+## Etat d'avancement 
+
+Les niveaux 1,2,3 sont faiblement implémentés
+
+## Projet de developpement 
+
+Continuer le developpement : 
+* Implémenter la persistance du score à travers les niveaux
+* Tuer les spawners entre les tableaux
+* Ecrire du texte ENTRE les niveaux
+
+## Credits
+
+Musique : [Marius Chandèze](https://github.com/machandeze)
+Graphisme : [Guillaume Garros](https://github.com/RedGuigui)
+Scénario : [Axel Pronnier](https://github.com/Axpronnier) et [Valentin Meunier](https://github.com/herrlockskun)
+Developpement : [Axel Pronnier](https://github.com/Axpronnier), [Valentin Meunier](https://github.com/herrlockskun), [Guillaume Garros](https://github.com/RedGuigui) et [Marius Chandèze](https://github.com/machandeze)
+
 # Notice d'installation d'ocaml ORX et de ses problèmes rencontrés
 
 **Tout ce qui suit a été fait sous Ubuntu 22.04**
@@ -44,34 +72,6 @@ ajouter `export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/path/to/orx/code/lib/dynamic/`
 * Un jeu fini avec la même lib [shatter un jeu complet](https://github.com/hcarty/shatter)
 * [La lib ocaml-orx](https://github.com/orx/ocaml-orx)
 
-
-# Etat du jeu 
-
-## Synopsis
-
-Knil un jeune entrepreneur ambitieux et malin souhaite ouvrir un resto de steak de chamo dans le futur. Cependant les chamo ont disparu de son époque et du futur, il doit donc voyager dans le pc pour chasser du chamo. Suivez la à travers son aventure exceptionel à travers le temps.
-
-## Système de jeu
-
-C'est un jeu d'aventure ou l'on se déplace sur différents tableaux
-
-## Etat d'avancement 
-
-Les niveaux 1,2,3 sont faiblement implémentés
-
-## Projet de developpement 
-
-Continuer le developpement : 
-* Implémenter la persistance du score à travers les niveaux
-* Tuer les spawners entre les tableaux
-* Ecrire du texte ENTRE les niveaux
-
-## Credits
-
-Musique : [Marius Chandèze](https://github.com/machandeze)
-Graphisme : [Guillaume Garros](https://github.com/RedGuigui)
-Scénario : [Axel Pronnier](https://github.com/Axpronnier) et [Valentin Meunier](https://github.com/herrlockskun)
-Developpement : [Axel Pronnier](https://github.com/Axpronnier), [Valentin Meunier](https://github.com/herrlockskun), [Guillaume Garros](https://github.com/RedGuigui) et [Marius Chandèze](https://github.com/machandeze)
 
 
 
